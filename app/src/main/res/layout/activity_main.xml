@@ -50,17 +50,22 @@
                 android:id="@+id/text_View"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hello World!"
+                android:text="T"
                 android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textSize="20dp"
                 />
 
             <TextView
                 android:id="@+id/text_Food"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="test"
+                android:text="T"
                 android:layout_weight="1"
                 android:textColor="@color/purple_500"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:textSize="20dp"
                 />
 
 
