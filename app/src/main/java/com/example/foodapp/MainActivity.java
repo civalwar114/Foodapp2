@@ -37,10 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
     //음식 알고리즘
     public String food_algorithm(String t) {
-        //결과
-        String result = "";
         //데이더 배열
-        String[][] data = new String[100][3];
+        String[][] data = new String[18][4];       //food.csv 열, 줄 개수 맞추기
 
         //데이터 배열 초기값을 ""로 만들기
         for(int i=0; i<data.length; i++) {
@@ -58,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             while ((line = reader.readLine()) != null) {
                 // -1 옵션은 마지막 "," 이후 빈 공백도 읽기 위한 옵션
                 String[] token = line.split(",", -1);
-                for(i=0;i<3;i++) {
+                for(i=0;i<4;i++) {  //데이터 줄 갯수 맞추기
                     data[row][i] = token[i];
                 }
                 row++;
@@ -72,11 +70,15 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        //변수
+        int i;   //반복문에 사용
+        String result = ""; //결과 내용!
+
         //인사 알고리즘
         String result_hello = "";
         String[] hello = new String[]{"안녕", "하이", "ㅎㅇ", "반가", "반갑", "방가"};
 
-        for (int i = 0; i < hello.length; i++) {
+        for (i = 0; i < hello.length; i++) {
             if (t.contains(hello[i])) {
                 result_hello = "안녕하세요 ";
             }
@@ -100,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         String result_bossam = "";				//보쌈
         String[] bossam = new String[]{"보쌈", "수육"};
 
-        for (int i = 0; i < korfood.length; i++) {
+        for (i = 0; i < korfood.length; i++) {
             if (t.contains(korfood[i])) {
                 result_korfood = "한식";
             }
@@ -127,7 +129,52 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        //맛 종류 알고리즘
+        //음식 유형 알고리즘
+        String result_noodle = "";				//면
+        String[] noodle = new String[]{"면류", "면", "국수"};
+        String result_soup = "";				//국
+        String[] soup = new String[]{"국물", "국", "탕"};
+        String result_fried = "";				//튀김
+        String[] fried = new String[]{"튀김", "프라이드", "후라이드"};
+        String result_rice = "";				//밥
+        String[] rice = new String[]{"밥", "곡류", "곡물"};
+        String result_bread = "";				//빵
+        String[] bread = new String[]{"빵", "밀", "제과"};
+        String result_meat = "";				//고기
+        String[] meat = new String[]{"고기", "육류", "육"};
+        String result_fish = "";				//생선
+        String[] fish = new String[]{"생선", "어류", "물고기"};
+        String result_snack = "";			    //간식
+        String[] snack = new String[]{"간식", "간단", "디저트"};
+
+        for (i = 0; i < noodle.length; i++) {
+            if (t.contains(noodle[i])) {
+                result_noodle = "면";
+            }
+            if (t.contains(soup[i])) {
+                result_soup = "국";
+            }
+            if (t.contains(fried[i])) {
+                result_fried = "튀김";
+            }
+            if (t.contains(rice[i])) {
+                result_rice = "밥";
+            }
+            if (t.contains(bread[i])) {
+                result_bread = "빵";
+            }
+            if (t.contains(meat[i])) {
+                result_meat = "고기";
+            }
+            if (t.contains(fish[i])) {
+                result_fish = "생선";
+            }
+            if (t.contains(snack[i])) {
+                result_snack = "간식";
+            }
+        }
+
+        //맛 유형 알고리즘
         String result_sweet = "";				//단맛
         String[] sweet = new String[]{"단맛", "달달", "단"};
         String result_salty = "";				//짠맛
@@ -143,9 +190,12 @@ public class MainActivity extends AppCompatActivity {
         String result_spicy = "";				//매운맛
         String[] spicy = new String[]{"매운맛", "맵", "매운"};
 
-        for (int i = 0; i < sweet.length; i++) {
+        for (i = 0; i < sweet.length; i++) {
             if (t.contains(sweet[i])) {
-                result_sweet = "단맛";
+                if (t.indexOf(sweet[i]) > 0 && t.substring(t.indexOf(sweet[i]) - 1, t.indexOf(sweet[i])).contains("안"))
+                    result_sweet = "안단맛";   //단어 앞에 "안" 이 있을경우 부정!!
+                else
+                    result_sweet = "단맛";
             }
             if (t.contains(salty[i])) {
                 result_salty = "짠맛";
@@ -166,43 +216,14 @@ public class MainActivity extends AppCompatActivity {
                 result_spicy = "매운맛";
             }
         }
-        //음식 유형 알고리즘
 
-/*
-        String result_noodle = "";				//면
-        String[] noodle = new String[]{"면류", "면", "국수"};
-        String result_soup = "";				//국
-        String[] soup = new String[]{"국물", "국", "탕"};
-        String result_fried = "";				//튀김
-        String[] fried = new String[]{"튀김"};
-        String result_rice = "";				//밥
-        String[] rice = new String[]{"밥"};
-
-
-
-        for (int i = 0; i < noodle.length; i++) {
-            if (t.contains(noodle[i])) {
-                result_noodle = "면류";
-            }
-            if (t.contains(soup[i])) {
-                result_soup = "국물";
-            }
-            if (t.contains(fried[i])) {
-                result_fried = "튀김";
-            }
-            if (t.contains(rice[i])) {
-                result_rice = "밥";
-            }
-
-        }// 여기 주석 풀기 전에 가중치를 추가 해야댐
-*/
         //추천 알고리즘
         String[] result_recommend = new String[data.length];    //추천 결과
         int[] recommend = new int[data.length];     //가중치 구하기
         int max_recommend = 0;  //가중치 최댓값
         int num_recommend = 0;  //가중치 갯수 (추천 갯수)
 
-        for(int i=0; i<data.length; i++) {		//음식 종류 가중치 +2
+        for(i=1; i<data.length; i++) {		//음식 종류 가중치 +2
             if (result_korfood != "") {
                 if(data[i][1].contains(result_korfood))
                     recommend[i] += 2;
@@ -237,44 +258,81 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        for(int i=0; i<data.length; i++) {		//맛 종류 가중치 +1
-            if (result_sweet != "") {
-                if(data[i][2].contains(result_sweet))
+        for(i=1; i<data.length; i++) {		//음식 유형 가중치 +1
+            if (result_noodle != "") {
+                if(data[i][2].contains(result_noodle))
                     recommend[i] += 1;
             }
-            if (result_salty != "") {
-                if(data[i][2].contains(result_salty))
+            if (result_soup != "") {
+                if(data[i][2].contains(result_soup))
                     recommend[i] += 1;
             }
-            if (result_sour != "") {
-                if(data[i][2].contains(result_sour))
+            if (result_fried != "") {
+                if(data[i][2].contains(result_fried))
                     recommend[i] += 1;
             }
-            if (result_bitter != "") {
-                if(data[i][2].contains(result_bitter))
+            if (result_rice != "") {
+                if(data[i][2].contains(result_rice))
                     recommend[i] += 1;
             }
-            if (result_umami != "") {
-                if(data[i][2].contains(result_umami))
+            if (result_bread != "") {
+                if(data[i][2].contains(result_bread))
                     recommend[i] += 1;
             }
-            if (result_fat != "") {
-                if(data[i][2].contains(result_fat))
+            if (result_meat != "") {
+                if(data[i][2].contains(result_meat))
                     recommend[i] += 1;
             }
-            if (result_spicy != "") {
-                if(data[i][2].contains(result_spicy))
+            if (result_fish != "") {
+                if(data[i][2].contains(result_fish))
+                    recommend[i] += 1;
+            }
+            if (result_snack != "") {
+                if(data[i][2].contains(result_snack))
                     recommend[i] += 1;
             }
         }
 
-        for(int i=0; i<data.length; i++) {      //가중치 최댓값 구하기
+        for(i=1; i<data.length; i++) {		//맛 유형 가중치 +1
+            if (result_sweet != "") {
+                if (result_sweet.contains("안") && data[i][3].contains(result_sweet.substring(1,3)))
+                    recommend[i] -= 1;
+                if(data[i][3].contains(result_sweet))
+                    recommend[i] += 1;
+            }
+            if (result_salty != "") {
+                if(data[i][3].contains(result_salty))
+                    recommend[i] += 1;
+            }
+            if (result_sour != "") {
+                if(data[i][3].contains(result_sour))
+                    recommend[i] += 1;
+            }
+            if (result_bitter != "") {
+                if(data[i][3].contains(result_bitter))
+                    recommend[i] += 1;
+            }
+            if (result_umami != "") {
+                if(data[i][3].contains(result_umami))
+                    recommend[i] += 1;
+            }
+            if (result_fat != "") {
+                if(data[i][3].contains(result_fat))
+                    recommend[i] += 1;
+            }
+            if (result_spicy != "") {
+                if(data[i][3].contains(result_spicy))
+                    recommend[i] += 1;
+            }
+        }
+
+        for(i=1; i<data.length; i++) {      //가중치 최댓값 구하기
             if(max_recommend < recommend[i]) {
                 max_recommend = recommend[i];
             }
         }
 
-        for(int i=0; i<data.length; i++) {      //가중치가 젤 높은것들 result_recommend에 저장
+        for(i=1; i<data.length; i++) {      //가중치가 젤 높은것들 result_recommend에 저장
             if(recommend[i] == max_recommend){
                 result_recommend[num_recommend] = data[i][0];
                 num_recommend++;
