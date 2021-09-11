@@ -31,7 +31,7 @@ public class Food_Algorithm {
     //음식 알고리즘
     public String Food_Algorithm(String t) {
         //데이더 배열
-        String[][] data = new String[18][4];    //food.csv 열, 줄 개수 맞추기
+        String[][] data = new String[20][4];    //food.csv 열, 줄 개수 맞추기
 
         //데이터 배열 초기값을 ""로 만들기
         for(int i=0; i<data.length; i++) {
@@ -191,21 +191,39 @@ public class Food_Algorithm {
                     result_sweet = "단맛";
             }
             if (t.contains(salty[i])) {
+                if (t.indexOf(salty[i]) > 0 && t.substring(t.indexOf(salty[i]) - 1, t.indexOf(salty[i])).contains("안"))
+                    result_salty = "안짠맛";
+                else
                 result_salty = "짠맛";
             }
             if (t.contains(sour[i])) {
+                if (t.indexOf(sour[i]) > 0 && t.substring(t.indexOf(sour[i]) - 1, t.indexOf(sour[i])).contains("안"))
+                    result_sour = "안신맛";
+                else
                 result_sour = "신맛";
             }
             if (t.contains(bitter[i])) {
+                if (t.indexOf(bitter[i]) > 0 && t.substring(t.indexOf(bitter[i]) - 1, t.indexOf(bitter[i])).contains("안"))
+                    result_bitter = "안쓴맛";
+                else
                 result_bitter = "쓴맛";
             }
             if (t.contains(umami[i])) {
+                if (t.indexOf(umami[i]) > 0 && t.substring(t.indexOf(umami[i]) - 1, t.indexOf(umami[i])).contains("안"))
+                    result_umami = "안감칠맛";
+                else
                 result_umami = "감칠맛";
             }
             if (t.contains(fat[i])) {
+                if (t.indexOf(fat[i]) > 0 && t.substring(t.indexOf(fat[i]) - 1, t.indexOf(fat[i])).contains("안"))
+                    result_fat = "안지방맛";
+                else
                 result_fat = "지방맛";
             }
             if (t.contains(spicy[i])) {
+                if (t.indexOf(spicy[i]) > 0 && t.substring(t.indexOf(spicy[i]) - 1, t.indexOf(spicy[i])).contains("안"))
+                    result_spicy = "안매운맛";
+                else
                 result_spicy = "매운맛";
             }
         }
@@ -294,26 +312,38 @@ public class Food_Algorithm {
                     recommend[i] += 1;
             }
             if (result_salty != "") {
+                if (result_salty.contains("안") && data[i][3].contains(result_salty.substring(1,3)))
+                    recommend[i] -= 1;
                 if(data[i][3].contains(result_salty))
                     recommend[i] += 1;
             }
             if (result_sour != "") {
+                if (result_sour.contains("안") && data[i][3].contains(result_sour.substring(1,3)))
+                    recommend[i] -= 1;
                 if(data[i][3].contains(result_sour))
                     recommend[i] += 1;
             }
             if (result_bitter != "") {
+                if (result_bitter.contains("안") && data[i][3].contains(result_bitter.substring(1,3)))
+                    recommend[i] -= 1;
                 if(data[i][3].contains(result_bitter))
                     recommend[i] += 1;
             }
             if (result_umami != "") {
+                if (result_umami.contains("안") && data[i][3].contains(result_umami.substring(1,3)))
+                    recommend[i] -= 1;
                 if(data[i][3].contains(result_umami))
                     recommend[i] += 1;
             }
             if (result_fat != "") {
+                if (result_fat.contains("안") && data[i][3].contains(result_fat.substring(1,3)))
+                    recommend[i] -= 1;
                 if(data[i][3].contains(result_fat))
                     recommend[i] += 1;
             }
             if (result_spicy != "") {
+                if (result_spicy.contains("안") && data[i][3].contains(result_spicy.substring(1,3)))
+                    recommend[i] -= 1;
                 if(data[i][3].contains(result_spicy))
                     recommend[i] += 1;
             }
