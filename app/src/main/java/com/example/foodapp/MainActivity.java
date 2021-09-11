@@ -3,9 +3,15 @@ package com.example.foodapp;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 import algorithm.Food_Algorithm;
 
@@ -19,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void btn_click(View view)
     {
-
         TextView textView = (TextView)findViewById(R.id.text_View);
         EditText editText = (EditText)findViewById(R.id.EDT);
         TextView text_Food =(TextView)findViewById(R.id.text_Food);
@@ -29,8 +34,7 @@ public class MainActivity extends AppCompatActivity {
         String food = f.Food_Algorithm(textView.getText().toString());
 
         textView.setText(editText.getText()); // 사용자가 입력한 문자로 바꾸기
-        text_Food.setText(food); //대답
-        
+        text_Food.setText(food); // 음식 추천 출력
     }
 
 }
