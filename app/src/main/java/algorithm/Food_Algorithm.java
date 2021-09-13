@@ -1,9 +1,6 @@
 package algorithm;
 
 import android.content.Context;
-import android.content.res.Resources;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodapp.R;
 
